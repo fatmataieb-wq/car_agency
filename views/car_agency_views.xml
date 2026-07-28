@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_car_agency_list" model="ir.ui.view">
+        <field name="name">car.agency.list</field>
+        <field name="model">car.agency</field>
+        <field name="arch" type="xml">
+            <list string="Agencies">
+                <field name="responsible_id"/>
+                <field name="brand_count"/>
+                <field name="car_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_car_agency_form" model="ir.ui.view">
+        <field name="name">car.agency.form</field>
+        <field name="model">car.agency</field>
+        <field name="arch" type="xml">
+            <form string="Agency">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Requirement 3: smart button, only shows brands
+                             related to THIS agency (domain in the action). -->
+                        <button name="action_view_brands"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tags">
+                            <field name="brand_count" widget="statinfo" string="Car Brands"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="responsible_id"/>
+                        <h1>
+                            <field name="responsible_id"/>
+                        </h1>
+                    </div>
+
+                    <notebook>
+                        <!-- "list of cars which will be present at the agency" -->
+                        <page string="Cars">
+                            <field name="car_ids" readonly="1" options="{'no_create': True}">
+                                <list>
+                                    <field name="registration_number"/>
+                                    <field name="brand_id"/>
+                                    <field name="mileage"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_car_agency_search" model="ir.ui.view">
+        <field name="name">car.agency.search</field>
+        <field name="model">car.agency</field>
+        <field name="arch" type="xml">
+            <search string="Search Agencies">
+                <field name="responsible_id"/>
+                <separator string="Group By"/>
+                <group>
+                    <!-- Requirement: group agencies by responsible -->
+                    <filter string="Responsible" name="group_responsible" context="{'group_by': 'responsible_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_car_agency" model="ir.actions.act_window">
+        <field name="name">Agencies</field>
+        <field name="res_model">car.agency</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_car_agency_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first agency
+            </p>
+        </field>
+    </record>
+
+</odoo>

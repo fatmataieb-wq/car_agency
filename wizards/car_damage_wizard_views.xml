@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_car_damage_wizard_form" model="ir.ui.view">
+        <field name="name">car.damage.wizard.form</field>
+        <field name="model">car.damage.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Report Car Damage">
+                <group>
+                    <field name="car_id"/>
+                    <field name="description" placeholder="Describe the cause of the damage..."/>
+                </group>
+                <footer>
+                    <button name="action_confirm_damage"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

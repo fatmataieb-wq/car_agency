@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_car_brand_user,access.car.brand.user,model_car_brand,base.group_user,1,1,1,1
+access_car_agency_user,access.car.agency.user,model_car_agency,base.group_user,1,1,1,1
+access_car_car_user,access.car.car.user,model_car_car,base.group_user,1,1,1,1
+access_car_damage_wizard_user,access.car.damage.wizard.user,model_car_damage_wizard,base.group_user,1,1,1,1
