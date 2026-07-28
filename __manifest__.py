@@ -20,8 +20,7 @@ Extends ``res.partner`` with a CIN (national ID) field so that a
 customer is fully described by name / CIN / phone / email, all of
 which are supported natively by ``res.partner``.
 """,
-    'author': 'Your Name',
-    'website': 'https://www.example.com',
+    'author': 'Fatma Taieb',
     'license': 'LGPL-3',
     # 'mail' is required for the chatter (mail.thread) on car.car,
     # used to keep an audit trail of status/damage changes.
