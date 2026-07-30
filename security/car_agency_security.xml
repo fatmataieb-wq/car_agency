@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CATEGORY: groups this module's roles under their own section
+         in Settings > Users & Companies > Groups -->
+    <record id="module_category_car_agency" model="ir.module.category">
+        <field name="name">Car Agency</field>
+        <field name="description">Access rights for the car rental agencies module.</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- PRIVILEGE: Odoo 19 requires this intermediate record — groups
+         no longer point to category_id directly, they point here -->
+    <record id="privilege_car_agency" model="res.groups.privilege">
+        <field name="name">Car Agency</field>
+        <field name="category_id" ref="module_category_car_agency"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- GROUP 1: day-to-day staff -->
+    <record id="group_car_agency_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="privilege_car_agency"/>
+        <field name="comment">
+            Can view, create and edit cars, brands and customers.
+            Cannot delete records or manage agencies.
+        </field>
+    </record>
+
+    <!-- GROUP 2: manager — implied_ids means every Manager
+         automatically also holds the User group -->
+    <record id="group_car_agency_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="privilege_car_agency"/>
+        <field name="implied_ids" eval="[(4, ref('group_car_agency_user'))]"/>
+        <field name="comment">
+            Full access: manage agencies, brands, cars, and can delete records.
+        </field>
+    </record>
+
+    <!-- RECORD RULE: row-level filter — a User only sees cars whose
+         agency they are the responsible person of -->
+    <record id="car_car_rule_own_agency" model="ir.rule">
+        <field name="name">Car: Users only see their own agency's cars</field>
+        <field name="model_id" ref="model_car_car"/>
+        <field name="domain_force">[('agency_id.responsible_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('group_car_agency_user'))]"/>
+    </record>
+
+    <record id="car_brand_rule_own_agency" model="ir.rule">
+        <field name="name">Brand: Users only see their own agency's brands</field>
+        <field name="model_id" ref="model_car_brand"/>
+        <field name="domain_force">[('agency_id.responsible_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('group_car_agency_user'))]"/>
+    </record>
+    <record id="car_brand_rule_manager_all" model="ir.rule">
+        <field name="name">Brand: Managers see everything</field>
+        <field name="model_id" ref="model_car_brand"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_car_agency_manager'))]"/>
+    </record>
+
+    <record id="car_car_rule_manager_all" model="ir.rule">
+        <field name="name">Car: Managers see everything</field>
+        <field name="model_id" ref="model_car_car"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_car_agency_manager'))]"/>
+    </record>
+
+</odoo>

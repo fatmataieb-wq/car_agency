@@ -27,6 +27,7 @@ which are supported natively by ``res.partner``.
     'depends': ['base', 'mail'],
     'data': [
         # security must be loaded first
+        'security/car_agency_security.xml',
         'security/ir.model.access.csv',
         # wizard view must exist before it is referenced by python actions
         'wizards/car_damage_wizard_views.xml',

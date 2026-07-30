@@ -7,8 +7,9 @@
               name="Agencies"
               parent="menu_car_agency_root"
               action="action_car_agency"
+              groups="car_agency.group_car_agency_manager"
               sequence="10"/>
-
+              
     <menuitem id="menu_car_agency_brands"
               name="Car Brands"
               parent="menu_car_agency_root"
