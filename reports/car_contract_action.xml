@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_report_car_contract" model="ir.actions.report">
+        <field name="name">Rental Contract</field>
+        <field name="model">car.car</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">car_agency.report_car_contract_document</field>
+        <field name="report_file">car_agency.report_car_contract_document</field>
+        <field name="binding_model_id" ref="model_car_car"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

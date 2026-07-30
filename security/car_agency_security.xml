@@ -27,8 +27,7 @@
         </field>
     </record>
 
-    <!-- GROUP 2: manager — implied_ids means every Manager
-         automatically also holds the User group -->
+    <!-- GROUP 2: manager  -->
     <record id="group_car_agency_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="privilege_id" ref="privilege_car_agency"/>

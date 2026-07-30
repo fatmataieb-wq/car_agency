@@ -37,6 +37,8 @@ which are supported natively by ``res.partner``.
         'views/car_agency_views.xml',
         'views/res_partner_views.xml',
         'views/menu_views.xml',
+        'reports/car_contract_report.xml',
+        'reports/car_contract_action.xml',
     ],
     'installable': True,
     'application': True,
