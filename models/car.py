@@ -4,19 +4,6 @@ from odoo.exceptions import ValidationError
 
 
 class Car(models.Model):
-    """A single car handled by the agency.
-
-    Specification:
-        - registration_number, brand_id (the "car model") and state
-          are mandatory.
-        - registration_number must be a unique, strictly positive
-          integer made of exactly 8 digits.
-        - cars can be searched by registration_number and filtered by
-          state (search/filter logic lives in views/car_views.xml).
-        - (requirement 2) customer_id links to res.partner.
-        - (requirement 4) a car can be marked 'damaged' through a
-          wizard; the status field must then disappear from the form.
-    """
     _name = 'car.car'
     _description = 'Car'
     # mail.thread/mail.activity.mixin give us a chatter for free, so
