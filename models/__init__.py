@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from . import car_brand
 from . import car_agency
 from . import car
