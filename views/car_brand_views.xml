@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- List View -->
     <record id="view_car_brand_list" model="ir.ui.view">
         <field name="name">car.brand.list</field>
         <field name="model">car.brand</field>
@@ -13,8 +11,6 @@
             </list>
         </field>
     </record>
-
-    <!-- Form View -->
     <record id="view_car_brand_form" model="ir.ui.view">
         <field name="name">car.brand.form</field>
         <field name="model">car.brand</field>
@@ -49,8 +45,6 @@
             </form>
         </field>
     </record>
-
-    <!-- Search View -->
     <record id="view_car_brand_search" model="ir.ui.view">
         <field name="name">car.brand.search</field>
         <field name="model">car.brand</field>
@@ -65,8 +59,6 @@
             </search>
         </field>
     </record>
-
-    <!-- Action -->
     <record id="action_car_brand" model="ir.actions.act_window">
         <field name="name">Car Brands</field>
         <field name="res_model">car.brand</field>
