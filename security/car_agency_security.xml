@@ -65,5 +65,13 @@
         <field name="domain_force">[(1, '=', 1)]</field>
         <field name="groups" eval="[(4, ref('group_car_agency_manager'))]"/>
     </record>
+    <!-- GROUP 3: portal customers can only see their own cars -->
+    <record id="car_car_portal_rule" model="ir.rule">
+        <field name="name">Portal: customers see only their own cars</field>
+        <field name="model_id" ref="model_car_car"/>
+        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+    
 
 </odoo>
