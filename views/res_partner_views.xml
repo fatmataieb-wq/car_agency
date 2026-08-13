@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- customer = name / cin / phone / email.
-         name/phone/email already exist on res.partner, we only add cin. -->
     <record id="view_partner_form_inherit_car_agency" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.car.agency</field>
         <field name="model">res.partner</field>

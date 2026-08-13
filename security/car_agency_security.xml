@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- CATEGORY: groups this module's roles under their own section
-         in Settings > Users & Companies > Groups -->
     <record id="module_category_car_agency" model="ir.module.category">
         <field name="name">Car Agency</field>
         <field name="description">Access rights for the car rental agencies module.</field>
         <field name="sequence">20</field>
     </record>
-
-    <!-- PRIVILEGE: Odoo 19 requires this intermediate record — groups
-         no longer point to category_id directly, they point here -->
     <record id="privilege_car_agency" model="res.groups.privilege">
         <field name="name">Car Agency</field>
         <field name="category_id" ref="module_category_car_agency"/>
         <field name="sequence">20</field>
     </record>
-
-    <!-- GROUP 1: day-to-day staff -->
     <record id="group_car_agency_user" model="res.groups">
         <field name="name">User</field>
         <field name="privilege_id" ref="privilege_car_agency"/>
@@ -26,8 +18,6 @@
             Cannot delete records or manage agencies.
         </field>
     </record>
-
-    <!-- GROUP 2: manager  -->
     <record id="group_car_agency_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="privilege_id" ref="privilege_car_agency"/>
@@ -36,9 +26,6 @@
             Full access: manage agencies, brands, cars, and can delete records.
         </field>
     </record>
-
-    <!-- RECORD RULE: row-level filter — a User only sees cars whose
-         agency they are the responsible person of -->
     <record id="car_car_rule_own_agency" model="ir.rule">
         <field name="name">Car: Users only see their own agency's cars</field>
         <field name="model_id" ref="model_car_car"/>
