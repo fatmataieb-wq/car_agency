@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <template id="portal_my_cars" name="My Cars">
         <t t-call="portal.portal_layout">
             <t t-set="page_name" value="car"/>
@@ -30,15 +29,15 @@
             </div>
         </t>
     </template>
+
     <template id="portal_my_home_car_agency" inherit_id="portal.portal_my_home">
-        <xpath expr="//div[@id='portal_common_category']" position="inside">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t t-set="icon" t-value="'/car_agency/static/description/icon.png'"/>
                 <t t-set="title">My cars</t>
                 <t t-set="text">See the cars you've rented</t>
                 <t t-set="url" t-value="'/my/cars'"/>
                 <t t-set="placeholder_count" t-value="'car_count'"/>
-
             </t>
         </xpath>
     </template>
