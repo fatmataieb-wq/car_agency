@@ -11,7 +11,6 @@ class Car(models.Model):
         string='Registration Number',
         required=True,
         copy=False,
-        tracking=True,
     )
     brand_id = fields.Many2one(
         comodel_name='car.brand',
@@ -60,16 +59,15 @@ class Car(models.Model):
         'CHECK(registration_number > 0)',
         'The registration number must be strictly positive!',
     )
-
     @api.constrains('registration_number')
-    def _check_registration_number_length(self):
+    def _check_registration_number(self):
         for car in self:
-            if car.registration_number and len(str(car.registration_number)) != 8:
+            if not car.registration_number:
+                continue
+            if len(str(car.registration_number)) != 8:
                 raise ValidationError(
-                    _('The registration number "%s" must contain exactly 8 digits.')
-                    % car.registration_number
-                )
-
+                    _('The registration number must contain exactly 8 digits.')
+            )
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
         for car in self:

@@ -8,3 +8,5 @@ access_car_car_manager,access.car.car.manager,model_car_car,group_car_agency_man
 access_car_damage_wizard_user,access.car.damage.wizard.user,model_car_damage_wizard,group_car_agency_user,1,1,1,1
 access_car_car_portal,access.car.car.portal,model_car_car,base.group_portal,1,0,0,0
 access_car_brand_portal,access.car.brand.portal,model_car_brand,base.group_portal,1,0,0,0
+access_car_rental_user,access.car.rental.user,model_car_rental,group_car_agency_user,1,1,1,0
+access_car_rental_manager,access.car.rental.manager,model_car_rental,group_car_agency_manager,1,1,1,1

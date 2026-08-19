@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="view_car_list" model="ir.ui.view">
         <field name="name">car.car.list</field>
         <field name="model">car.car</field>
@@ -8,20 +9,26 @@
                   decoration-danger="state == 'damaged'"
                   decoration-success="state == 'available'"
                   decoration-warning="state == 'rented'">
-                <field name="registration_number"/>
+
+                <field name="registration_number"
+                       options="{'enable_formatting': false}"/>
                 <field name="brand_id"/>
                 <field name="agency_id"/>
                 <field name="mileage"/>
                 <field name="state"/>
                 <field name="customer_id"/>
+
             </list>
         </field>
     </record>
+
+
     <record id="view_car_form" model="ir.ui.view">
         <field name="name">car.car.form</field>
         <field name="model">car.car</field>
         <field name="arch" type="xml">
             <form string="Car">
+
                 <header>
                     <button name="action_open_damage_wizard"
                             string="Damaged"
@@ -29,70 +36,111 @@
                             class="btn-danger"
                             invisible="state == 'damaged'"/>
                 </header>
+
                 <sheet>
+
                     <div class="oe_title">
                         <label for="registration_number"/>
                         <h1>
-                            <field name="registration_number" placeholder="e.g. 12345678"/>
+                            <field name="registration_number"
+                                   placeholder="e.g. 12345678"
+                                   options="{'enable_formatting': false}"/>
                         </h1>
                     </div>
-                    <div class="alert alert-danger" role="alert"
+
+                    <div class="alert alert-danger"
+                         role="alert"
                          invisible="state != 'damaged'">
-                        This car is currently reported as <strong>damaged</strong> and cannot be rented.
+                        This car is currently reported as
+                        <strong>damaged</strong> and cannot be rented.
                     </div>
 
                     <group>
+
                         <group>
                             <field name="brand_id"/>
                             <field name="agency_id" readonly="1"/>
                             <field name="mileage"/>
                         </group>
+
                         <group>
-                            <field name="state" invisible="state == 'damaged'"/>
+                            <field name="state"
+                                   invisible="state == 'damaged'"/>
                             <field name="customer_id"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
                         </group>
+
                     </group>
 
                     <notebook>
-                        <page string="Damage Note" invisible="state != 'damaged'">
+                        <page string="Damage Note"
+                              invisible="state != 'damaged'">
                             <field name="note"/>
                         </page>
                     </notebook>
+
                 </sheet>
+
                 <chatter/>
+
             </form>
         </field>
     </record>
+
+
     <record id="view_car_search" model="ir.ui.view">
         <field name="name">car.car.search</field>
         <field name="model">car.car</field>
         <field name="arch" type="xml">
             <search string="Search Cars">
-                <!-- Possibility to search a car by its registration number -->
-                <field name="registration_number" string="Registration Number"/>
+
+                <field name="registration_number"
+                       string="Registration Number"/>
+
                 <field name="brand_id"/>
                 <field name="agency_id"/>
                 <field name="customer_id"/>
-                <filter string="Available" name="filter_available" domain="[('state', '=', 'available')]"/>
-                <filter string="Rented" name="filter_rented" domain="[('state', '=', 'rented')]"/>
-                <filter string="Damaged" name="filter_damaged" domain="[('state', '=', 'damaged')]"/>
+
+                <filter string="Available"
+                        name="filter_available"
+                        domain="[('state', '=', 'available')]"/>
+
+                <filter string="Rented"
+                        name="filter_rented"
+                        domain="[('state', '=', 'rented')]"/>
+
+                <filter string="Damaged"
+                        name="filter_damaged"
+                        domain="[('state', '=', 'damaged')]"/>
 
                 <separator string="Group By"/>
+
                 <group>
-                    <filter string="Brand" name="group_brand" context="{'group_by': 'brand_id'}"/>
-                    <filter string="Agency" name="group_agency" context="{'group_by': 'agency_id'}"/>
-                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Brand"
+                            name="group_brand"
+                            context="{'group_by': 'brand_id'}"/>
+
+                    <filter string="Agency"
+                            name="group_agency"
+                            context="{'group_by': 'agency_id'}"/>
+
+                    <filter string="Status"
+                            name="group_state"
+                            context="{'group_by': 'state'}"/>
                 </group>
+
             </search>
         </field>
     </record>
+
+
     <record id="action_car_car" model="ir.actions.act_window">
         <field name="name">Cars</field>
         <field name="res_model">car.car</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_car_search"/>
+
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Register your first car
